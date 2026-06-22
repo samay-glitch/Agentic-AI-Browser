@@ -1,0 +1,11 @@
+{
+    "firstName": "Alan",
+    "lastName": "Turing",
+    "userEmail": "alan.turing@example.com",
+    "gender": "Male",
+    "userNumber": "1234567890",
+    "dateOfBirth": "23 Jun 1912",
+    "subjects": "Computer Science",
+    "hobbies": "Sports",
+    "currentAddress": "Bletchley Park, UK"
+}
