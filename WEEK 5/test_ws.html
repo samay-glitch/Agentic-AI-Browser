@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        #logs { background: #f4f4f4; padding: 10px; height: 400px; overflow-y: scroll; border: 1px solid #ccc; white-space: pre-wrap; }
+        input { padding: 5px; width: 300px; }
+        button { padding: 5px 15px; }
+    </style>
+</head>
+<body>
+    <h2>Test WebSocket Live Streaming</h2>
+    <p>Because FastAPI's Swagger UI (/docs) does not support WebSocket endpoints, use this page to watch the live streaming!</p>
+    
+    <div>
+        <label>Task ID:</label>
+        <input type="text" id="taskId" placeholder="Paste your task_id here..." />
+        <button onclick="connect()">Connect & Stream</button>
+    </div>
+    
+    <h3>Live Stream Logs:</h3>
+    <div id="logs"></div>
+
+    <script>
+        function connect() {
+            const taskId = document.getElementById("taskId").value.trim();
+            if(!taskId) {
+                alert("Please enter a task_id");
+                return;
+            }
+            
+            const logsDiv = document.getElementById("logs");
+            logsDiv.innerHTML = "Connecting...\n";
+            
+            const ws = new WebSocket(`ws://127.0.0.1:8000/ws/status/${taskId}`);
+            
+            ws.onopen = function() {
+                logsDiv.innerHTML += "✅ Connected successfully. Waiting for updates...\n\n";
+            };
+            
+            ws.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                
+                let message = `[Status: ${data.status} | Progress: ${data.progress}%]\n`;
+                if(data.latest_log) {
+                    message += `Log: ${data.latest_log}\n`;
+                }
+                if(data.result) {
+                    message += `\n🎉 Final Result: ${data.result}\n`;
+                }
+                if(data.error) {
+                    message += `\n❌ Error: ${data.error}\n`;
+                }
+                
+                logsDiv.innerHTML += message + "----------------------------------------\n";
+                logsDiv.scrollTop = logsDiv.scrollHeight; // Auto-scroll
+            };
+            
+            ws.onclose = function() {
+                logsDiv.innerHTML += "\n🔌 Connection closed by server.";
+            };
+        }
+    </script>
+</body>
+</html>
