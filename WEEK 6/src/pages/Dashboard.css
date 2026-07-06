@@ -1,0 +1,57 @@
+.page-container {
+  animation: slideUp var(--transition-normal);
+  height: 100%;
+  display: flex;
+  gap: 24px;
+}
+
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.dashboard-sidebar {
+  width: 240px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-sidebar h3 {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 16px 0;
+}
+
+.history-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background: var(--bg-card-hover);
+  border-radius: 8px;
+  font-size: 13px;
+  border-left: 2px solid var(--accent-blue);
+}
+
+.history-command {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.history-id {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.history-empty {
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+  padding: 24px 0;
+}

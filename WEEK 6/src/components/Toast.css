@@ -1,0 +1,118 @@
+/* ============================================
+   Toast Notification
+   ============================================ */
+
+.toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 300px;
+  max-width: 440px;
+  padding: 14px 18px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  pointer-events: auto;
+}
+
+/* Entry / Exit animations */
+.toast--enter {
+  animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast--exit {
+  animation: slideOutRight 0.3s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+/* Type-specific borders & glows */
+.toast--success {
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(34, 197, 94, 0.1),
+    inset 0 1px 0 rgba(34, 197, 94, 0.08);
+}
+
+.toast--error {
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(239, 68, 68, 0.1),
+    inset 0 1px 0 rgba(239, 68, 68, 0.08);
+}
+
+.toast--info {
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(59, 130, 246, 0.08);
+}
+
+/* Icon */
+.toast__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.toast--success .toast__icon {
+  background: var(--accent-green-glow);
+  color: var(--accent-green);
+}
+
+.toast--error .toast__icon {
+  background: var(--accent-red-glow);
+  color: var(--accent-red);
+}
+
+.toast--info .toast__icon {
+  background: var(--accent-blue-glow);
+  color: var(--accent-blue);
+}
+
+/* Message */
+.toast__message {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 450;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* Close button */
+.toast__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.toast__close:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
