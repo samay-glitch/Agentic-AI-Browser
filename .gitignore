@@ -1,9 +1,11 @@
-# Virtual environments
-WEEK 4/4/
-venv/
-ai-browser-agent/
-__pycache__/
-*.pyc
-
-# Environment files
+node_modules/
+dist/
 .env
+.DS_Store
+*.log
+venv/
+env/
+.venv/
+Scripts/
+Lib/
+Include/
